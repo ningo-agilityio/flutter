@@ -7,67 +7,93 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var donuts = 0;
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.pink[200],
-        appBar: AppBar(
-          backgroundColor: Colors.pink[500],
-          title: Text('Mi Card'),
-        ),
         body: SafeArea(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                width: 100,
-                padding: EdgeInsets.all(20),
-                color: Colors.white,
-                child: Center(
-                  child: Text('Container 1'),
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: NetworkImage(
+                  'https://ollari.com/wp-content/uploads/2015/06/teammember-5.jpg',
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    height: 100,
-                    width: 120,
-                    padding: EdgeInsets.all(20),
-                    color: Colors.pink[100],
-                    child: Center(
-                      child: Text('Container 2a'),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 100,
-                    width: 120,
-                    padding: EdgeInsets.all(20),
-                    color: Colors.pink[100],
-                    child: Center(
-                      child: Text('Container 2b'),
-                    ),
-                  ),
-                ],
+              Text(
+                'Ni Ngo',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Pacifico',
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                'WEB DEVELOPER',
+                style: TextStyle(
+                  color: Colors.pink.shade100,
+                  fontSize: 20,
+                  fontFamily: 'Source Sans Pro',
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 5,
+                ),
+              ),
+              SizedBox(
+                height: 30,
               ),
               Container(
-                width: 100,
-                padding: EdgeInsets.all(20),
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 25,
+                ),
+                padding: EdgeInsets.all(10),
                 color: Colors.white,
-                child: Center(
-                  child: Text('Container 3'),
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.phone,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      '+84 77-3535-348',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 25,
+                ),
+                padding: EdgeInsets.all(10),
+                color: Colors.white,
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.email,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'ni.ngo611@gmail.com',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.pink[300],
-          child: Icon(Icons.add),
         ),
       ),
     );
