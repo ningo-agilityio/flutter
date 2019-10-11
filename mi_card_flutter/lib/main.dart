@@ -40,56 +40,61 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontFamily: 'Source Sans Pro',
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 5,
+                  letterSpacing: 3,
                 ),
               ),
               SizedBox(
-                height: 30,
-              ),
-              Container(
-                width: double.infinity,
+                  height: 20,
+                  width: 150,
+                  child: Divider(
+                    color: Colors.pink[100],
+                  )),
+              Card(
                 margin: EdgeInsets.symmetric(
                   vertical: 10,
                   horizontal: 25,
                 ),
-                padding: EdgeInsets.all(10),
                 color: Colors.white,
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.phone,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      '+84 77-3535-348',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ],
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.phone,
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Text(
+                        '+84 77-3535-348',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              Container(
-                width: double.infinity,
+              Card(
                 margin: EdgeInsets.symmetric(
                   vertical: 10,
                   horizontal: 25,
                 ),
-                padding: EdgeInsets.all(10),
                 color: Colors.white,
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.email,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'ni.ngo611@gmail.com',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ],
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.email,
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Text(
+                        'ni.ngo611@gmail.com',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
