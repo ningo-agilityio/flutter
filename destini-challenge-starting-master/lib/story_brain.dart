@@ -35,16 +35,16 @@ class StoryBrain {
     )
   ];
 
-  String getChoice1(index) {
-    return _storyData[index].choice1;
+  String getChoice1() {
+    return _storyData[_current].choice1;
   }
 
-  String getChoice2(index) {
-    return _storyData[index].choice2;
+  String getChoice2() {
+    return _storyData[_current].choice2;
   }
 
-  String getStory(index) {
-    return _storyData[index].title;
+  String getStory() {
+    return _storyData[_current].title;
   }
 
   void nextStory(choice) {
@@ -62,9 +62,5 @@ class StoryBrain {
 
   bool shouldBeVisible() {
     return _current < 3;
-  }
-
-  int getCurrent() {
-    return _current;
   }
 }
