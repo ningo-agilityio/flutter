@@ -48,19 +48,12 @@ class StoryBrain {
   }
 
   void nextStory(choice) {
-    switch (_current) {
-      case 0:
-        _current = choice == 1 ? 2 : 1;
-        break;
-
-      case 1:
-        _current = choice == 1 ? 2 : 3;
-        break;
-
-      case 2:
-        _current = choice == 1 ? 5 : 4;
-        break;
-    }
+    Map<int, Map<int, int>> choices = {
+      0: {1: 2, 2: 1},
+      1: {1: 2, 2: 3},
+      2: {1: 5, 2: 4}
+    };
+    _current = choices[_current][choice];
   }
 
   void restart() {
