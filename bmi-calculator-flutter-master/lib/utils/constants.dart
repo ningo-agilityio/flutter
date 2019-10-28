@@ -24,3 +24,29 @@ const kNumberStyle = TextStyle(
   fontSize: 40,
   fontWeight: FontWeight.w900,
 );
+
+const kLargeTextStyle = TextStyle(
+  fontSize: 22,
+  fontWeight: FontWeight.w600,
+);
+
+const kTitleStyle = TextStyle(
+  fontSize: 40,
+  fontWeight: FontWeight.bold,
+);
+
+// RESULT PAGE STYLE
+const kResultTextStyle = TextStyle(
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+  color: Color(0xFF24D876),
+);
+
+const kBMITextStyle = TextStyle(
+  fontSize: 100,
+  fontWeight: FontWeight.bold,
+);
+
+const kBMIBodyTextStyle = TextStyle(
+  fontSize: 22,
+);

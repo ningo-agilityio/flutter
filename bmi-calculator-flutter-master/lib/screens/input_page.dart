@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'reusable_card.dart';
-import 'icon_content.dart';
-import 'constants.dart';
-import 'round_icon_button.dart';
+import '../components/reusable_card.dart';
+import '../components/icon_content.dart';
+import '../utils/constants.dart';
+import '../components/round_icon_button.dart';
+import '../components/calculate_button.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -239,26 +240,11 @@ class _InputPageState extends State<InputPage> {
               ),
             ]),
           ),
-          GestureDetector(
+          ResultButton(
             onTap: () {
               Navigator.pushNamed(context, '/result');
             },
-            child: Container(
-              color: kBottomBoxBgColor,
-              margin: EdgeInsets.only(top: 10),
-              width: double.infinity,
-              height: kBottomBoxHeight,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'CALCULATE',
-                    style: kTextStyle,
-                  )
-                ],
-              ),
-            ),
+            title: 'CALCULATE',
           )
         ],
       ),
