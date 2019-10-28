@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'icon_content.dart';
-
-const bottomBoxHeight = 80.0;
-const boxBgColor = Color(0xFF1D1E33);
-const bottomBoxBgColor = Color(0xFFEB1555);
-const inActiveBoxColor = Color(0xFF111328);
+import 'constants.dart';
+import 'round_icon_button.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -14,15 +11,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleActiveColor = inActiveBoxColor;
-  Color femaleActiveColor = inActiveBoxColor;
-
-  void onPickGender(gender) {
-    // 1: Male
-    // 0: Female
-    maleActiveColor = gender == 1 ? boxBgColor : inActiveBoxColor;
-    femaleActiveColor = gender == 0 ? boxBgColor : inActiveBoxColor;
-  }
+  Gender selectedGender;
+  int height = 180;
+  int weight = 60;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -35,34 +27,34 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(children: <Widget>[
               Expanded(
-                child: GestureDetector(
-                  onTap: () {
+                child: ReusableCard(
+                  onPress: () {
                     setState(() {
-                      onPickGender(1);
+                      selectedGender = Gender.male;
                     });
                   },
-                  child: ReusableCard(
-                    colour: maleActiveColor,
-                    child: IconContent(
-                      icon: FontAwesomeIcons.mars,
-                      text: 'MALE',
-                    ),
+                  colour: selectedGender == Gender.male
+                      ? kBoxBgColor
+                      : kInActiveBoxColor,
+                  child: IconContent(
+                    icon: FontAwesomeIcons.mars,
+                    text: 'MALE',
                   ),
                 ),
               ),
               Expanded(
-                child: GestureDetector(
-                  onTap: () {
+                child: ReusableCard(
+                  onPress: () {
                     setState(() {
-                      onPickGender(0);
+                      selectedGender = Gender.female;
                     });
                   },
-                  child: ReusableCard(
-                    colour: femaleActiveColor,
-                    child: IconContent(
-                      icon: FontAwesomeIcons.venus,
-                      text: 'FEMALE',
-                    ),
+                  colour: selectedGender == Gender.female
+                      ? kBoxBgColor
+                      : kInActiveBoxColor,
+                  child: IconContent(
+                    icon: FontAwesomeIcons.venus,
+                    text: 'FEMALE',
                   ),
                 ),
               ),
@@ -72,7 +64,63 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: ReusableCard(colour: boxBgColor),
+                  child: ReusableCard(
+                    colour: kBoxBgColor,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'HEIGHT',
+                          style: kTextStyle,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: <Widget>[
+                            Text(
+                              height.toString(),
+                              style: kNumberStyle,
+                            ),
+                            Text(
+                              'cm',
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            inactiveTrackColor: kSliderInactive,
+                            activeTrackColor: Colors.white,
+                            thumbColor: kSliderActive,
+                            overlayColor: kSliderOverlayActive,
+                            thumbShape: RoundSliderThumbShape(
+                              enabledThumbRadius: 15,
+                            ),
+                            overlayShape: RoundSliderOverlayShape(
+                              overlayRadius: 30,
+                            ),
+                          ),
+                          child: Slider(
+                            value: height.toDouble(),
+                            min: 120,
+                            max: 220,
+                            onChanged: (double value) {
+                              setState(() {
+                                height = value.round();
+                              });
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -80,18 +128,122 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(children: <Widget>[
               Expanded(
-                child: ReusableCard(colour: boxBgColor),
+                child: ReusableCard(
+                  colour: kBoxBgColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'WEIGHT',
+                        style: kTextStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: <Widget>[
+                          Text(
+                            weight.toString(),
+                            style: kNumberStyle,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RoundIconButton(
+                            icon: Icons.add,
+                            onPressed: () {
+                              setState(() {
+                                weight++;
+                              });
+                            },
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          RoundIconButton(
+                            icon: Icons.remove,
+                            onPressed: () {
+                              setState(() {
+                                weight--;
+                              });
+                            },
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ),
               Expanded(
-                child: ReusableCard(colour: boxBgColor),
+                child: ReusableCard(
+                  colour: kBoxBgColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'AGE',
+                        style: kTextStyle,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: <Widget>[
+                          Text(
+                            age.toString(),
+                            style: kNumberStyle,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RoundIconButton(
+                            icon: Icons.add,
+                            onPressed: () {
+                              setState(() {
+                                age++;
+                              });
+                            },
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          RoundIconButton(
+                            icon: Icons.remove,
+                            onPressed: () {
+                              setState(() {
+                                age--;
+                              });
+                            },
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ),
             ]),
           ),
           Container(
-            color: bottomBoxBgColor,
+            color: kBottomBoxBgColor,
             margin: EdgeInsets.only(top: 10),
             width: double.infinity,
-            height: bottomBoxHeight,
+            height: kBottomBoxHeight,
           )
         ],
       ),
