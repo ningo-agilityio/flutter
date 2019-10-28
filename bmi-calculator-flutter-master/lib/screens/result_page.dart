@@ -26,6 +26,7 @@ class ResultPage extends StatelessWidget {
               child: Text(
                 'Your result',
                 style: kTitleStyle,
+                textAlign: TextAlign.center,
               ),
             ),
           ),
@@ -37,7 +38,12 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Text(bmiResultMsg.message, style: kResultTextStyle),
+                  Text(
+                    bmiResultMsg.message,
+                    style: bmiResultMsg.message == 'Normal'
+                        ? kResultTextStyle
+                        : kResultNotNormalTextStyle,
+                  ),
                   Text(bmiResultNumber, style: kBMITextStyle),
                   Text(
                     bmiResultMsg.interpretation,

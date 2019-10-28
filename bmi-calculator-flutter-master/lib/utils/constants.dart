@@ -42,6 +42,12 @@ const kResultTextStyle = TextStyle(
   color: Color(0xFF24D876),
 );
 
+const kResultNotNormalTextStyle = TextStyle(
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+  color: Colors.red,
+);
+
 const kBMITextStyle = TextStyle(
   fontSize: 100,
   fontWeight: FontWeight.bold,
