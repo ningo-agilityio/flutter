@@ -25,7 +25,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void deactivate() {
     super.deactivate();
-    print('deactivate called');
   }
 
   @override

@@ -5,12 +5,19 @@ const apiKey = '3b185137dbb530f164db160da3c16fa0';
 const endpoint = 'http://api.openweathermap.org/data/2.5/weather';
 
 class WeatherModel {
-  Future<dynamic> getCurrentWeather() async {
-    Location location = Location();
-    await location.getLocation();
+  Future<dynamic> getCurrentWeather({city: null}) async {
+    String url = '';
 
-    NetworkHelper helper = NetworkHelper(
-        '$endpoint?lat=${location.latitude}&lon=${location.longitude}&APPID=$apiKey&units=metric');
+    if (city == null) {
+      Location location = Location();
+      await location.getLocation();
+      url =
+          '$endpoint?lat=${location.latitude}&lon=${location.longitude}&APPID=$apiKey&units=metric';
+    } else {
+      url = '$endpoint?q=$city&APPID=$apiKey&units=metric';
+    }
+
+    NetworkHelper helper = NetworkHelper(url);
     var weatherData = await helper.getData();
     return weatherData;
   }
