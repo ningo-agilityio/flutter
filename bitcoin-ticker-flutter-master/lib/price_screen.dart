@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'coin_data.dart';
 import 'package:flutter/cupertino.dart';
-import 'dart:io' show Platform;
+import 'dart:convert';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -9,7 +11,9 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-  String current = 'USD';
+  String currency = 'USD';
+  int lastPrice = 0;
+  CoinData coinData = CoinData();
 
   Widget getPicker() {
     List<DropdownMenuItem<String>> androidWidgets = [];
@@ -35,14 +39,22 @@ class _PriceScreenState extends State<PriceScreen> {
     return isIOS ? iOSPicker(iOSWidgets) : androidPicker(androidWidgets);
   }
 
+  void onPickCurrency(value) {
+    coinData.getCoinData(value).then((HttpClientResponse resp) {
+      resp.transform(utf8.decoder).listen((contents) {
+        setState(() {
+          lastPrice = jsonDecode(contents.toString())['last'].toInt();
+        });
+      });
+    });
+  }
+
   Widget iOSPicker(child) {
     return CupertinoPicker(
       backgroundColor: Colors.lightBlue,
       itemExtent: 40, // Height of each item
       onSelectedItemChanged: (index) {
-        setState(() {
-          current = currenciesList[index];
-        });
+        onPickCurrency(currenciesList[index]);
       },
       children: child,
     );
@@ -50,7 +62,7 @@ class _PriceScreenState extends State<PriceScreen> {
 
   Widget androidPicker(child) {
     return DropdownButton(
-      value: current,
+      value: currency,
       underline: Container(
         height: 1,
         color: Colors.white,
@@ -58,7 +70,7 @@ class _PriceScreenState extends State<PriceScreen> {
       elevation: 16,
       items: child,
       onChanged: (value) {
-        current = value;
+        onPickCurrency(value);
       },
     );
   }
@@ -84,7 +96,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = ? USD',
+                  '1 BTC = $lastPrice USD',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
