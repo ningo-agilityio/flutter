@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'dart:convert';
 
-const endpoint = 'https://apiv2.bitcoinaverage.com/indices/global/ticker';
+const endpoint = 'https://apiv2.bitcoinaverage.com/indices/global/ticker/short';
+
 const List<String> currenciesList = [
   'AUD',
   'BRL',
@@ -36,7 +37,9 @@ class CoinData {
   CoinData();
 
   Future<HttpClientResponse> getCoinData(currency) {
-    return HttpClient().getUrl(Uri.parse('$endpoint/BTC$currency')).then(
+    return HttpClient()
+        .getUrl(Uri.parse('$endpoint?fiat=$currency&crypto=BTC,ETH,LTC'))
+        .then(
       (HttpClientRequest request) {
         return request.close();
       },

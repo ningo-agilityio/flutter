@@ -1,9 +1,8 @@
 import 'dart:io';
-
-import 'package:flutter/material.dart';
 import 'coin_data.dart';
-import 'package:flutter/cupertino.dart';
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -12,7 +11,9 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String currency = 'USD';
-  int lastPrice = 0;
+  int btcPrice = 0;
+  int ethPrice = 0;
+  int ltcPrice = 0;
   CoinData coinData = CoinData();
 
   @override
@@ -50,7 +51,12 @@ class _PriceScreenState extends State<PriceScreen> {
       resp.transform(utf8.decoder).listen((contents) {
         setState(() {
           currency = value;
-          lastPrice = jsonDecode(contents.toString())['last'].toInt();
+          btcPrice =
+              jsonDecode(contents.toString())['BTC$value']['last'].toInt();
+          ltcPrice =
+              jsonDecode(contents.toString())['LTC$value']['last'].toInt();
+          ethPrice =
+              jsonDecode(contents.toString())['ETH$value']['last'].toInt();
         });
       });
     });
@@ -82,6 +88,53 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 
+  Widget getCryptoList() {
+    List<Card> widgets = [];
+
+    for (String crypto in cryptoList) {
+      int price = 0;
+
+      switch (crypto) {
+        case 'LTC':
+          price = ltcPrice;
+          break;
+
+        case 'ETH':
+          price = ethPrice;
+          break;
+
+        default:
+          price = btcPrice;
+          break;
+      }
+
+      widgets.add(
+        Card(
+          color: Colors.lightBlueAccent,
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+            child: Text(
+              '1 $crypto = $price $currency',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: widgets,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,25 +146,8 @@ class _PriceScreenState extends State<PriceScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: Card(
-              color: Colors.lightBlueAccent,
-              elevation: 5.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-                child: Text(
-                  '1 BTC = $lastPrice $currency',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            padding: EdgeInsets.all(20),
+            child: getCryptoList(),
           ),
           Container(
             height: 150.0,
