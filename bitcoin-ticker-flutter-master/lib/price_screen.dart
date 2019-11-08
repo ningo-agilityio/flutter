@@ -15,6 +15,12 @@ class _PriceScreenState extends State<PriceScreen> {
   int lastPrice = 0;
   CoinData coinData = CoinData();
 
+  @override
+  void initState() {
+    super.initState();
+    onPickCurrency(currency);
+  }
+
   Widget getPicker() {
     List<DropdownMenuItem<String>> androidWidgets = [];
     List<Text> iOSWidgets = [];
@@ -43,6 +49,7 @@ class _PriceScreenState extends State<PriceScreen> {
     coinData.getCoinData(value).then((HttpClientResponse resp) {
       resp.transform(utf8.decoder).listen((contents) {
         setState(() {
+          currency = value;
           lastPrice = jsonDecode(contents.toString())['last'].toInt();
         });
       });
@@ -96,7 +103,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = $lastPrice USD',
+                  '1 BTC = $lastPrice $currency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
