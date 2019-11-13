@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TextBox extends StatelessWidget {
-  Function onChanged;
-  String hintText;
+class RoundTextField extends StatelessWidget {
+  final Function onChanged;
+  final String hintText;
 
-  TextBox({this.onChanged, this.hintText});
+  RoundTextField({this.onChanged, this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +12,9 @@ class TextBox extends StatelessWidget {
       onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle: TextStyle(
+          color: Colors.grey,
+        ),
         contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(32.0)),

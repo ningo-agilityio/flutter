@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flash_chat/components/round_button.dart';
-import 'package:flash_chat/components/text_box.dart';
+import 'package:flash_chat/components/round_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -30,16 +30,20 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 48.0,
             ),
-            TextBox(
+            RoundTextField(
               hintText: 'Enter your email',
-              onChanged: () {},
+              onChanged: (value) {
+                print(value);
+              },
             ),
             SizedBox(
               height: 8.0,
             ),
-            TextBox(
-              hintText: 'Enter your password.',
-              onChanged: () {},
+            RoundTextField(
+              hintText: 'Enter your password',
+              onChanged: (value) {
+                print(value);
+              },
             ),
             SizedBox(
               height: 24.0,
