@@ -87,7 +87,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               bgColor: Colors.blueAccent,
               onPressed: () {
                 //Go to login screen.
-                Navigator.pushNamed(context, LoginScreen.id);
+                Navigator.pushNamed(context, RegistrationScreen.id);
               },
             ),
           ],

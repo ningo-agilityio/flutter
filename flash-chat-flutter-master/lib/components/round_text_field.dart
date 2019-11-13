@@ -3,13 +3,21 @@ import 'package:flutter/material.dart';
 class RoundTextField extends StatelessWidget {
   final Function onChanged;
   final String hintText;
+  final bool obscure;
+  final TextInputType inputType;
 
-  RoundTextField({this.onChanged, this.hintText});
+  RoundTextField({this.onChanged, this.hintText, this.obscure, this.inputType});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      keyboardType: inputType,
+      textAlign: TextAlign.center,
+      obscureText: obscure,
       onChanged: onChanged,
+      style: TextStyle(
+        color: Colors.black,
+      ),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
