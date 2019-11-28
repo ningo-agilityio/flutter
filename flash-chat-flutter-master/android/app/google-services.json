@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "142179358650",
+    "firebase_url": "https://flash-chat-e8996.firebaseio.com",
+    "project_id": "flash-chat-e8996",
+    "storage_bucket": "flash-chat-e8996.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142179358650:android:3ec4f858f7e9d9bd906f83",
+        "android_client_info": {
+          "package_name": "co.ningo.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142179358650-7ntvageuub3bthl2orogm3vrq84ribl4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5TcJfI4iYsN1siXavnMSh4Wscp7NsjiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142179358650-7ntvageuub3bthl2orogm3vrq84ribl4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
