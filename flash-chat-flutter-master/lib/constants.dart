@@ -10,10 +10,17 @@ const kMessageTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   hintText: 'Type your message here...',
   border: InputBorder.none,
+  hintStyle: TextStyle(
+    color: Colors.black,
+  ),
 );
 
 const kMessageContainerDecoration = BoxDecoration(
   border: Border(
     top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
   ),
+);
+
+const kMessageTextStyle = TextStyle(
+  fontSize: 20.0,
 );
