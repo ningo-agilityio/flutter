@@ -23,4 +23,5 @@ const kMessageContainerDecoration = BoxDecoration(
 
 const kMessageTextStyle = TextStyle(
   fontSize: 20.0,
+  color: Colors.white,
 );

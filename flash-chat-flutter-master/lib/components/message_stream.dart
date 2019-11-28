@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MessageStream extends StatelessWidget {
-  const MessageStream({
-    Key key,
-    @required Firestore fireStore,
-  })  : _fireStore = fireStore,
-        super(key: key);
+  final Firestore fireStore;
+  final loggedInUser;
 
-  final Firestore _fireStore;
+  MessageStream({this.fireStore, this.loggedInUser});
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _fireStore.collection('messages').snapshots(),
+      stream: fireStore.collection('messages').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
@@ -23,15 +20,19 @@ class MessageStream extends StatelessWidget {
             ),
           );
         }
+        // Reverse the order of list message
         final messages = snapshot.data.documents;
         List<MessageBubble> messagesWidgets = [];
         for (var msg in messages) {
           final text = msg.data['text'];
           final sender = msg.data['sender'];
+          final current = loggedInUser.email;
+
           messagesWidgets.add(
             MessageBubble(
               text: text,
               sender: sender,
+              isMe: current == sender,
             ),
           );
         }
