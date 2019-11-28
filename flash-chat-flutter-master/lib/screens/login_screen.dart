@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 8.0,
               ),
               RoundTextField(
-                obscure: false,
+                obscure: true,
                 inputType: TextInputType.text,
                 hintText: 'Enter your password',
                 onChanged: (value) {
