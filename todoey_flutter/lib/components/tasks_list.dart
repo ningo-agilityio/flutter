@@ -10,10 +10,13 @@ class TasksList extends StatelessWidget {
       return ListView.builder(
         itemBuilder: (context, index) {
           return TaskItem(
-            text: taskData.get()[index].text,
-            value: taskData.get()[index].finished,
+            text: taskData.tasks[index].text,
+            value: taskData.tasks[index].finished,
             onChanged: (value) {
               taskData.toggleFinish(index);
+            },
+            onRemove: () {
+              taskData.deleteTask(taskData.tasks[index]);
             },
           );
         },

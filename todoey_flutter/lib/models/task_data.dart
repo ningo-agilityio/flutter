@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'task.dart';
+import 'dart:collection';
 
 class TaskData extends ChangeNotifier {
   List<Task> _tasks = [
@@ -8,8 +9,8 @@ class TaskData extends ChangeNotifier {
     Task(text: 'Buy milk'),
   ];
 
-  List<Task> get() {
-    return _tasks;
+  UnmodifiableListView<Task> get tasks {
+    return UnmodifiableListView(_tasks);
   }
 
   void addTask(value) {
@@ -17,13 +18,13 @@ class TaskData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTask(index) {
-    _tasks.removeAt(index);
+  void deleteTask(Task task) {
+    _tasks.remove(task);
     notifyListeners();
   }
 
   void toggleFinish(index) {
-    _tasks[index].finished = !_tasks[index].finished;
+    _tasks[index].toggleFinish();
     notifyListeners();
   }
 
