@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatefulWidget {
   static const String id = 'add_task_screen';
+  final Function onAddNew;
+
+  AddTaskScreen({this.onAddNew});
 
   @override
   _AddTaskScreenState createState() => _AddTaskScreenState();
 }
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
+  String newTask;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +40,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
                 TextField(
                   textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    setState(() {
+                      newTask = value;
+                    });
+                  },
                 ),
                 SizedBox(
                   height: 30,
@@ -52,7 +62,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   ),
                   color: Colors.lightBlueAccent,
                   onPressed: () {
-                    print('click');
+                    widget.onAddNew(newTask);
                   },
                 ),
               ],
