@@ -63,6 +63,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   color: Colors.lightBlueAccent,
                   onPressed: () {
                     widget.onAddNew(newTask);
+                    // Dismiss bottom sheet
+                    Navigator.pop(context);
                   },
                 ),
               ],
