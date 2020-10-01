@@ -5,14 +5,18 @@ void main() {
   runApp(
     MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.pink[100],
+         drawer: Drawer(child:UserAccountsDrawerHeader(accountName: Text('xyz'),arrowColor: Colors.black,currentAccountPicture: CircleAvatar(child: Text('V'),),),),
+        
+        backgroundColor: Colors.black[100],
         appBar: AppBar(
-          title: Text('I am poor'),
-          backgroundColor: Colors.pink[900],
+          title: Text('I am rich', style: TextStyle(
+                fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+          ),
+          backgroundColor: Colors.black[900],
         ),
         body: Center(
           child: CircleAvatar(
-            radius: 150,
+            radius: 140,
             backgroundImage: AssetImage('images/lotus.png'),
           ),
         ),
